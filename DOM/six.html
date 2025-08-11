@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div class="flex flex-col gap-5 w-1/6 justify-center">
+            <h1 class="font-bold text-3xl">API</h1>
+            <button class="px-5 py-2 bg-green-400 cursor-pointer hover:bg-green-800" id="jwellery">jwellery</button>
+            <button class="px-5 py-2 bg-green-400 cursor-pointer hover:bg-green-800" id="electronics">electronics</button>
+            <button class="px-5 py-2 bg-green-400 cursor-pointer hover:bg-green-800" id="men">men's clothing</button>
+            <button class="px-5 py-2 bg-green-400 cursor-pointer hover:bg-green-800" id="women">women's clothing</button>
+
+        </div>
+        <div id="head">
+
+        </div>
+    </div>
+</body>
+    <script>
+        const head = document.getElementById('head');
+        const jwellery = document.getElementById('jwellery');
+        const electronics = document.getElementById('electronics');
+        const men = document.getElementById('men');
+        const women = document.getElementById('women');
+
+        fetch(`https://fakestoreapi.com/products`)
+        .then(raw=>raw.json())
+        .then(res=>{
+            console.log(res[0]);
+
+          
+
+          res.filter(item=>{
+
+              jwellery.addEventListener('click',()=>{
+             if(item.category == 'jewelery' && item.price < 300  && item.rating.rate > 3){
+                console.log(`>>>>>>>rating greater then 3>>>>>>>>`,item.rating.rate)
+                console.log(`>>>>>price less then 300>>>>>>>>>>`,item.price)
+                console.log("jwellery data show",item.category)
+            }
+           })
+            
+            
+
+            electronics.addEventListener('click',()=>{
+                if(item.category === 'electronics' && item.price < 300  && item.rating.rate > 3){
+                console.log(`>>>>>>>rating greater then 3>>>>>>>>`,item.rating.rate)
+                console.log(`>>>>>price less then 300>>>>>>>>>>`,item.price)
+                console.log('electronics data show',item.category)
+            }
+            })
+
+            men.addEventListener('click',()=>{
+                if(item.category == "men's clothing" && item.price < 300  && item.rating.rate > 3){
+                console.log(`>>>>>>>rating greater then 3>>>>>>>>`,item.rating.rate)
+                console.log(`>>>>>price less then 300>>>>>>>>>>`,item.price)
+                console.log('mens data show',item.category)
+            }
+            })
+
+            women.addEventListener('click',()=>{
+                if(item.category == "women's clothing" && item.price < 300 && item.rating.rate > 3){
+                console.log(`>>>>>>>rating greater then 3>>>>>>>>`,item.rating.rate)
+                console.log(`>>>>>price less then 300>>>>>>>>>>`,item.price)
+                console.log('women data show',item.category)
+            }
+            })
+          })
+
+          
+
+          
+        })
+    </script>
+</html>

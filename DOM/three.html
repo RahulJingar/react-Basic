@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="flex justify-center text-4xl font-bold tracking-tight">API Fetch</h1>
+    <div class="flex gap-5 w-24" id="head"></div>
+</body>
+    <script>
+        const head = document.getElementById('head')
+        fetch(`https://dummyjson.com/products`)
+        .then(raw=>raw.json())
+        .then(res=>{
+            let {title,description,images,price,rating} = res.products[0];     
+            
+          res.products.forEach(item=>{
+              head.innerHTML = head.innerHTML + `
+          <div class="border rounded-2xl p-3 bg-zinc-500 ml-12">
+            <h1 class="text-2xl">Title: ${title}</h1> <br>
+           <p>Description: ${description}</p> <br>
+           <img class="w-40" src=${images}><br>
+           <p>Price: ${price}</p> <br>
+           <p>Rating: ${rating}</p>
+           </div>
+        `
+          })
+
+        })
+        
+    </script>
+</html>
